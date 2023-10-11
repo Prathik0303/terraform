@@ -1,5 +1,18 @@
+resource "aws_instance" "Test1" {
+  ami           = "ami-0c94855ba95c71c99"
+  instance_type = "t2.micro"
+  subnet_id     = aws_subnet.public_subnet_1.id 
+  key_name      = var.key_name
+  associate_public_ip_address = true
+  tags = {
+    Name = "Vpc1"
+  }
+}
 resource "aws_vpc" "test_vpc" {
   cidr_block = var.vpc_cidr_block
+tags = {
+    Name = var.vpc_name
+  }
 }
 
 resource "aws_subnet" "public_subnet_1" {
